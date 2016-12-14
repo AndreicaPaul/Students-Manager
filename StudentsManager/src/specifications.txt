@@ -1,0 +1,19 @@
+Students Manager
+
+The purpose of this app is to give the teacher the possibility of tracking all the students within a classroom.
+
+Features:
+1. Add Students
+2. View all Students
+3. Remove Student
+4. Add Disciplines
+5. View all Disciplines
+6. Remove Discipline
+7. Give Student a grade at a certain discipline
+8. See all students based on different criteria
+    a. name
+    b. grades
+    c. grades at certain disciplines
+
+UI specs:
+The user (teacher) will interact with the app through the console, where a numbered menu will be shown.
