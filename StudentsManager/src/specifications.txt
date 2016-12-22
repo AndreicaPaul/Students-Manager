@@ -3,9 +3,9 @@ Students Manager
 The purpose of this app is to give the teacher the possibility of tracking all the students within a classroom.
 
 Features:
-1. Add Students
-2. View all Students
-3. Remove Student
+1. Add Students - Done
+2. View all Students - Done
+3. Remove Student - Done
 4. Add Disciplines
 5. View all Disciplines
 6. Remove Discipline
