@@ -1,14 +1,9 @@
 package com.company;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import com.company.controller.Controller;
+import com.company.repository.Repository;
+import com.company.view.Menu;
 
-import java.io.Console;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -86,41 +81,47 @@ public class Main {
     public static void main(String[] args) {
         /* /declarations */
         String userInput = "1";
-        Menu menu = new Menu();
-        Scanner scanner = new Scanner(System.in);
-        String studentsData[][] = new String[28][20];
-        int getData = 1;
-        int lastStudentIndex = 1;
-        int lastDisciplineIndex = 2;
-        /* /declarations */
 
-        while (getData != 0) {
-            System.out.println("What do you want to do next?");
-            menu.showMenu();
-            userInput = scanner.nextLine();
-            Main.cases(userInput, studentsData,lastStudentIndex,lastDisciplineIndex);
-            getData = Integer.parseInt(userInput);
-            switch (getData){
-                case 1: {
-                    lastStudentIndex++;
-                    break;
-                }
-                case 3: {
-                    lastStudentIndex--;
-                    break;
-                }
-                case 4: {
-                    lastDisciplineIndex++;
-                    break;
-                }
-                case 6: {
-                    lastDisciplineIndex--;
-                    break;
-                }
-                default: {
-                    break;
-                }
-            }
-        }
+        Repository repository = new Repository();
+        Controller controller = new Controller(repository);
+        Menu menu = new Menu(controller);
+        menu.run();
+
+
+//        Scanner scanner = new Scanner(System.in);
+//        String studentsData[][] = new String[28][20];
+//        int getData = 1;
+//        int lastStudentIndex = 1;
+//        int lastDisciplineIndex = 2;
+//        /* /declarations */
+//
+//        while (getData != 0) {
+//            System.out.println("What do you want to do next?");
+//            menu.showMenu();
+//            userInput = scanner.nextLine();
+//            Main.cases(userInput, studentsData,lastStudentIndex,lastDisciplineIndex);
+//            getData = Integer.parseInt(userInput);
+//            switch (getData){
+//                case 1: {
+//                    lastStudentIndex++;
+//                    break;
+//                }
+//                case 3: {
+//                    lastStudentIndex--;
+//                    break;
+//                }
+//                case 4: {
+//                    lastDisciplineIndex++;
+//                    break;
+//                }
+//                case 6: {
+//                    lastDisciplineIndex--;
+//                    break;
+//                }
+//                default: {
+//                    break;
+//                }
+//            }
+//        }
     }
 }
