@@ -6,7 +6,8 @@ import com.company.repository.Repository;
 /**
  * Created by itbrainiacs1 on 12/23/16.
  */
-public class Controller {
+public class Controller
+{
     private Repository repository;
 
     public Controller(Repository repository) {
@@ -17,4 +18,7 @@ public class Controller {
         this.repository.addStudent(student);
     }
 
+    public void showStudents() { this.repository.showStudents();}
+
+    public void removeStudent(Student student){ this.repository.removeStudent(student);}
 }

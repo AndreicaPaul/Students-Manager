@@ -8,7 +8,8 @@ public class Student {
     private String lastName;
     private int age;
 
-    public Student(String firstName, String lastName, int age) {
+    public Student(String firstName, String lastName, int age)
+    {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -22,12 +23,5 @@ public class Student {
         return lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    @Override
-    public String toString() {
-        return this.firstName + " " + this.lastName + super.toString();
-    }
+    public int getAge() { return age; }
 }
