@@ -1,8 +1,8 @@
 package com.company.repository;
 
 import com.company.model.Student;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -10,7 +10,7 @@ import java.util.Collection;
  */
 public class Repository
 {
-    private ArrayList<Student> students = new ArrayList<Student>();
+    public ArrayList<Student> students = new ArrayList<Student>();
 
     public void addStudent(Student student)
     {
@@ -29,6 +29,17 @@ public class Repository
 
     public void removeStudent(Student student)
     {
-        students.remove(student);
+        int j = 0;
+        for (Student i : students)
+        {
+            System.out.println(i.getFirstName());
+            System.out.println(student.getFirstName());
+            if(i.equals(student))
+            {
+                System.out.println("da");
+                students.remove(j);
+            }
+            j++;
+        }
     }
 }
