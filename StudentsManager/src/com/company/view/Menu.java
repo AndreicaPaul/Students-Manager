@@ -34,7 +34,26 @@ public class Menu {
                 int age = Integer.parseInt(scanner.nextLine());
                 Student student = new Student(firstName,lastName,age);
                 this.controller.addStudent(student);
+                break;
             }
+            case "2" : {
+                for(Student student : this.controller.getAllStudents()) {
+                    System.out.println(student.toString());
+                }
+                break;
+            }
+            case "3" : {
+                System.out.println("Input First Name: ");
+                String firstName = scanner.nextLine();
+                System.out.println("Input Last Name: ");
+                String lastName = scanner.nextLine();
+                System.out.println("Input Age: ");
+                int age = Integer.parseInt(scanner.nextLine());
+                Student student = new Student(firstName,lastName,age);
+                this.controller.removeStdudent(student);
+                break;
+            }
+
 
         }
     }

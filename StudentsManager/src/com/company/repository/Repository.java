@@ -10,13 +10,21 @@ import java.util.ArrayList;
 public class Repository {
     private ArrayList<Student> students = new ArrayList<Student>();
 
+
+
     public Repository() {
 
+    }
+
+    public ArrayList<Student> getStudents() {
+        return this.students;
     }
 
     public void addStudent(Student student){
         students.add(student);
     }
-
+    public void removeStudent(Student student){
+        students.remove(student);
+    }
 
 }
