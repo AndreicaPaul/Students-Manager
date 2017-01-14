@@ -40,4 +40,16 @@ public class Controller
     public void removeDiscipline(Discipline discipline){
         this.repository.removeDiscipline(discipline);
     }
+
+    public void sortByFirstName(){
+        this.repository.sortByFirstName();
+    }
+
+    public void removeStudentFormPosition(int pos){
+        this.repository.removeStudentFromPosition(pos);
+    }
+
+    public void removeDisciplineFromPosition(int pos){
+        this.repository.removeDisciplineFromPosition(pos);
+    }
 }

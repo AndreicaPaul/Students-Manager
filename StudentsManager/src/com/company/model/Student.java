@@ -10,6 +10,7 @@ public class Student {
     private String lastName;
     private int age;
 
+
     public Student(String firstName, String lastName, int age)
     {
         this.firstName = firstName;
@@ -55,7 +56,21 @@ public class Student {
         return result;
     }
 
-//    @Override
+    public static Comparator<Student> StuNameComparator = new Comparator<Student>() {
+
+        public int compare(Student s1, Student s2) {
+            String StudentName1 = s1.getFirstName().toUpperCase();
+            String StudentName2 = s2.getFirstName().toUpperCase();
+
+            //ascending order
+            return StudentName1.compareTo(StudentName2);
+
+            //descending order
+            //return StudentName2.compareTo(StudentName1);
+        }
+    };
+
+    //    @Override
 //    public int compare(Student s1, Student s2) {
 //        if(s1.getFirstName().equals(s2.getFirstName()) &&
 //                s1.getLastName().equals(s2.getLastName()) &&

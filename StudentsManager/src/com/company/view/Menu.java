@@ -36,6 +36,7 @@ public class Menu
         System.out.println("4. Add Discipline");
         System.out.println("5. View all Disciplines");
         System.out.println("6. Remove discipline");
+        System.out.println("7. Sort students by first name");
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
@@ -65,14 +66,27 @@ public class Menu
                 break;
             }
             case "3" : {
-                System.out.println("Input First Name: ");
-                String firstName = scanner.nextLine();
-                System.out.println("Input Last Name: ");
-                String lastName = scanner.nextLine();
-                System.out.println("Input Age: ");
-                int age = Integer.parseInt(scanner.nextLine());
-                Student student = new Student(firstName,lastName,age);
-                this.controller.removeStdudent(student);
+                System.out.println("If you want to manually input the student press 1, if you want to select the student from a certain position press 2.");
+                userInput = scanner.nextLine();
+                switch (userInput) {
+                    case "1" : {
+                        System.out.println("Input First Name: ");
+                        String firstName = scanner.nextLine();
+                        System.out.println("Input Last Name: ");
+                        String lastName = scanner.nextLine();
+                        System.out.println("Input Age: ");
+                        int age = Integer.parseInt(scanner.nextLine());
+                        Student student = new Student(firstName, lastName, age);
+                        this.controller.removeStdudent(student);
+                        break;
+                    }
+                    case "2" : {
+                        System.out.println("Note: this won't work unless you used function no.7 to sort the students");
+                        System.out.println("Input position: ");
+                        int pos = Integer.parseInt(scanner.nextLine());
+                        this.controller.removeStudentFormPosition(pos);
+                    }
+                }
                 break;
             }
             case "4" : {
@@ -94,15 +108,32 @@ public class Menu
                 break;
             }
             case "6" : {
-                System.out.println("Input teacher name: ");
-                String name = scanner.nextLine();
-                System.out.println("Input teacher age: ");
-                int age = Integer.parseInt(scanner.nextLine());
-                Teacher teacher = new Teacher(name,age);
-                System.out.println("Input discipline name: ");
-                String disciplineName = scanner.nextLine();
-                Discipline discipline = new Discipline(disciplineName,teacher);
-                this.controller.removeDiscipline(discipline);
+                System.out.println("If you want to manually input the discipline press 1, if you want to select the discipline from a certain position press 2.");
+                userInput = scanner.nextLine();
+                switch (userInput) {
+                    case "1" : {
+                        System.out.println("Input teacher name: ");
+                        String name = scanner.nextLine();
+                        System.out.println("Input teacher age: ");
+                        int age = Integer.parseInt(scanner.nextLine());
+                        Teacher teacher = new Teacher(name,age);
+                        System.out.println("Input discipline name: ");
+                        String disciplineName = scanner.nextLine();
+                        Discipline discipline = new Discipline(disciplineName,teacher);
+                        this.controller.removeDiscipline(discipline);
+                        break;
+                    }
+                    case "2" : {
+                        System.out.println("Note: use no.5 function to make sure what you are deleting ;)");
+                        System.out.println("Input position: ");
+                        int pos = Integer.parseInt(scanner.nextLine());
+                        this.controller.removeDisciplineFromPosition(pos);
+                    }
+                }
+                break;
+            }
+            case "7" : {
+                this.controller.sortByFirstName();
                 break;
             }
             default:

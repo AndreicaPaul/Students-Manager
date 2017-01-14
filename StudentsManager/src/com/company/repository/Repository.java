@@ -5,6 +5,7 @@ import com.company.model.Student;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by itbrainiacs1 on 12/23/16.
@@ -44,4 +45,15 @@ public class Repository {
         disciplines.remove(discipline);
     }
 
+    public void sortByFirstName(){
+        Collections.sort(students, Student.StuNameComparator);
+    }
+
+    public void removeStudentFromPosition (int pos){
+        students.remove(pos);
+    }
+
+    public void removeDisciplineFromPosition (int pos){
+        disciplines.remove(pos);
+    }
 }
