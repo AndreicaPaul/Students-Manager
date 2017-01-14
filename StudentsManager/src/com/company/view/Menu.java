@@ -1,7 +1,9 @@
 package com.company.view;
 
 import com.company.controller.Controller;
+import com.company.model.Discipline;
 import com.company.model.Student;
+import com.company.model.Teacher;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -71,6 +73,36 @@ public class Menu
                 int age = Integer.parseInt(scanner.nextLine());
                 Student student = new Student(firstName,lastName,age);
                 this.controller.removeStdudent(student);
+                break;
+            }
+            case "4" : {
+                System.out.println("Input teacher name: ");
+                String name = scanner.nextLine();
+                System.out.println("Input teacher age: ");
+                int age = Integer.parseInt(scanner.nextLine());
+                Teacher teacher = new Teacher(name,age);
+                System.out.println("Input discipline name: ");
+                String disciplineName = scanner.nextLine();
+                Discipline discipline = new Discipline(disciplineName,teacher);
+                this.controller.addDiscipline(discipline);
+                break;
+            }
+            case "5" : {
+                for (Discipline discipline : this.controller.getAllDisciplines()){
+                    System.out.println(discipline.toString());
+                }
+                break;
+            }
+            case "6" : {
+                System.out.println("Input teacher name: ");
+                String name = scanner.nextLine();
+                System.out.println("Input teacher age: ");
+                int age = Integer.parseInt(scanner.nextLine());
+                Teacher teacher = new Teacher(name,age);
+                System.out.println("Input discipline name: ");
+                String disciplineName = scanner.nextLine();
+                Discipline discipline = new Discipline(disciplineName,teacher);
+                this.controller.removeDiscipline(discipline);
                 break;
             }
             default:

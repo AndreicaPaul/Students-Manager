@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.model.Discipline;
 import com.company.model.Student;
 import com.company.repository.Repository;
 
@@ -26,5 +27,17 @@ public class Controller
 
     public ArrayList<Student> getAllStudents(){
         return this.repository.getStudents();
+    }
+
+    public void addDiscipline(Discipline discipline){
+        this.repository.addDiscipline(discipline);
+    }
+
+    public ArrayList<Discipline> getAllDisciplines(){
+        return this.repository.getDisciplines();
+    }
+
+    public void removeDiscipline(Discipline discipline){
+        this.repository.removeDiscipline(discipline);
     }
 }
