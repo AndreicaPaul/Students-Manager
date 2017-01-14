@@ -20,11 +20,6 @@ public class Controller
         this.repository.addStudent(student);
     }
 
-<<<<<<< HEAD
-    public void showStudents() { this.repository.showStudents();}
-
-    public void removeStudent(Student student){ this.repository.removeStudent(student);}
-=======
     public void removeStdudent (Student student) {
         this.repository.removeStudent(student);
 }
@@ -32,5 +27,4 @@ public class Controller
     public ArrayList<Student> getAllStudents(){
         return this.repository.getStudents();
     }
->>>>>>> origin/master
 }

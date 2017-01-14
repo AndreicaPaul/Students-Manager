@@ -54,44 +54,7 @@ public class Menu
                 Student student = new Student(firstName,lastName,age);
                 this.controller.addStudent(student);
                 break;
-<<<<<<< HEAD
-            }
-            case "2":
-            {
-                this.controller.showStudents();
-                break;
-            }
-            case"3":
-            {
-                System.out.println("Input First Name: ");
-                String firstName = scanner.nextLine();
-                System.out.println("Input Last Name: ");
-                String lastName = scanner.nextLine();
-                System.out.println("Input Age: ");
-                int age = Integer.parseInt(scanner.nextLine());
-                Student student = new Student(firstName,lastName,age);
-                this.controller.removeStudent(student);
-                break;
-            }
-            case "4" :
-            {
-                System.out.println("Input Disciplines Name: ");
-                String name = scanner.nextLine();
-                System.out.println("Input Teacher's Name: ");
-                String teacherName = scanner.nextLine();
-                System.out.println("Add students(input 1 to add student everytime and 0 to stop): ");
-                ArrayList<Student> studentsThatAttendThisDiscipline = new ArrayList<Student>();
-                while(Integer.parseInt(scanner.nextLine())!=0) {
-                    System.out.println("Input First Name: ");
-                    String firstName = scanner.nextLine();
-                    System.out.println("Input Last Name: ");
-                    String lastName = scanner.nextLine();
-                    System.out.println("Input Age: ");
-                    int age = Integer.parseInt(scanner.nextLine());
-                    Student student = new Student(firstName, lastName, age);
-                    studentsThatAttendThisDiscipline.add(student);
-                }
-=======
+
             }
             case "2" : {
                 for(Student student : this.controller.getAllStudents()) {
@@ -109,10 +72,6 @@ public class Menu
                 Student student = new Student(firstName,lastName,age);
                 this.controller.removeStdudent(student);
                 break;
-            }
-
->>>>>>> origin/master
-
             }
             default:
             {

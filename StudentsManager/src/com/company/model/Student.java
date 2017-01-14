@@ -25,16 +25,14 @@ public class Student {
         return lastName;
     }
 
-<<<<<<< HEAD
-    public int getAge() { return age; }
-=======
+
     public int getAge() {
         return age;
     }
 
     @Override
     public String toString() {
-        return this.firstName + " " + this.lastName + " " + this.getAge() + super.toString();
+        return this.firstName + " " + this.lastName + " " + this.getAge();
     }
 
     @Override
@@ -71,5 +69,4 @@ public class Student {
 //            return -1;
 //
 //    }
->>>>>>> origin/master
 }
