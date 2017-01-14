@@ -16,4 +16,8 @@ Features:
     c. grades at certain disciplines
 
 UI specs:
-The user (teacher) will interact with the app through the console, where a numbered menu will be shown.
+The user (class master) will interact with the app through the console, where a numbered menu will be shown.
+
+Notes:
+Each student will participate at all disciplines.
+Each discipline will be coordinated by one teacher.
