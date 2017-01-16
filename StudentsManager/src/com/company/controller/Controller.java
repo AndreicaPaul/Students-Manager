@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.model.Discipline;
+import com.company.model.Grade;
 import com.company.model.Student;
 import com.company.repository.Repository;
 
@@ -51,5 +52,9 @@ public class Controller
 
     public void removeDisciplineFromPosition(int pos){
         this.repository.removeDisciplineFromPosition(pos);
+    }
+
+    public void giveGrade (Grade grade) {
+        this.repository.giveGrade(grade);
     }
 }

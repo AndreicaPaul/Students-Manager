@@ -2,6 +2,7 @@ package com.company.view;
 
 import com.company.controller.Controller;
 import com.company.model.Discipline;
+import com.company.model.Grade;
 import com.company.model.Student;
 import com.company.model.Teacher;
 
@@ -36,7 +37,7 @@ public class Menu
         System.out.println("4. Add Discipline");
         System.out.println("5. View all Disciplines");
         System.out.println("6. Remove discipline");
-        System.out.println("7. Sort students by first name");
+        System.out.println("7. Give a student a grade");
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
@@ -60,6 +61,7 @@ public class Menu
 
             }
             case "2" : {
+                this.controller.sortByFirstName();
                 for(Student student : this.controller.getAllStudents()) {
                     System.out.println(student.toString());
                 }
@@ -81,7 +83,7 @@ public class Menu
                         break;
                     }
                     case "2" : {
-                        System.out.println("Note: this won't work unless you used function no.7 to sort the students");
+                        this.controller.sortByFirstName();
                         System.out.println("Input position: ");
                         int pos = Integer.parseInt(scanner.nextLine());
                         this.controller.removeStudentFormPosition(pos);
@@ -133,7 +135,14 @@ public class Menu
                 break;
             }
             case "7" : {
-                this.controller.sortByFirstName();
+                System.out.println("Please input discipline's position (use function no.5 if you are not sure): ");
+                int posDisc = Integer.parseInt(scanner.nextLine());
+                System.out.println("Please input student's position (use function no.2 if you are not sure): ");
+                int posStud = Integer.parseInt(scanner.nextLine());
+                System.out.println("Please input grade's value: ");
+                int gradeValue = Integer.parseInt(scanner.nextLine());
+                Grade grade = new Grade(gradeValue, posDisc, posStud);//Must give the student from posStud same for discipline
+                this.controller.giveGrade(grade);
                 break;
             }
             default:

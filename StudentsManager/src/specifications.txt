@@ -5,10 +5,10 @@ The purpose of this app is to give the teacher the possibility of tracking all t
 Features:
 1. Add Students - Done
 2. View all Students - Done
-3. Remove Student
-4. Add Disciplines
-5. View all Disciplines
-6. Remove Discipline
+3. Remove Student - Done
+4. Add Disciplines - Done
+5. View all Disciplines - Done
+6. Remove Discipline - Done
 7. Give Student a grade at a certain discipline
 8. See all students based on different criteria
     a. name

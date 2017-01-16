@@ -1,6 +1,7 @@
 package com.company.repository;
 
 import com.company.model.Discipline;
+import com.company.model.Grade;
 import com.company.model.Student;
 
 import java.util.ArrayList;
@@ -12,9 +13,9 @@ import java.util.Collections;
  */
 
 public class Repository {
-    private ArrayList<Student> students = new ArrayList<Student>();
+    private ArrayList<Student> students = new ArrayList<>();
     private ArrayList<Discipline> disciplines = new ArrayList<>();
-
+    private  ArrayList<Grade> grades = new ArrayList<>();
 
     public Repository() {
 
@@ -55,5 +56,9 @@ public class Repository {
 
     public void removeDisciplineFromPosition (int pos){
         disciplines.remove(pos);
+    }
+
+    public void giveGrade (Grade grade){
+        grades.add(grade);
     }
 }
