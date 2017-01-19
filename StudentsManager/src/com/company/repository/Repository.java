@@ -29,6 +29,8 @@ public class Repository {
         return this.students;
     }
 
+    public ArrayList<Grade> getGrades() {return this.grades; }
+
     public void addStudent(Student student){
         students.add(student);
     }
@@ -60,5 +62,17 @@ public class Repository {
 
     public void giveGrade (Grade grade){
         grades.add(grade);
+    }
+
+    public Student getStudentFromPosition(int posStud){
+        return  students.get(posStud);
+    }
+
+    public Discipline getDisciplineFromPosition(int posDisc){
+        return  disciplines.get(posDisc);
+    }
+
+    public void removeGradeFromPosition (int pos){
+        grades.remove(pos);
     }
 }

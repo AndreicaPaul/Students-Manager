@@ -27,4 +27,29 @@ public class Grade {
 
         return value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Grade grade = (Grade) o;
+
+        if (value != grade.value) return false;
+        if (discipline != null ? !discipline.equals(grade.discipline) : grade.discipline != null) return false;
+        return student != null ? student.equals(grade.student) : grade.student == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = value;
+        result = 31 * result + (discipline != null ? discipline.hashCode() : 0);
+        result = 31 * result + (student != null ? student.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Student: " + student + "\n" + "Discipline: " + discipline.getName() + "\n" + value + "\n" + "---------------------------";
+    }
 }

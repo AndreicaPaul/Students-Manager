@@ -36,8 +36,10 @@ public class Menu
         System.out.println("3. Remove Student");
         System.out.println("4. Add Discipline");
         System.out.println("5. View all Disciplines");
-        System.out.println("6. Remove discipline");
-        System.out.println("7. Give a student a grade");
+        System.out.println("6. Remove Discipline");
+        System.out.println("7. Give a Student a Grade");
+        System.out.println("8. View all Grades");
+        System.out.println("9. Remove Grade");
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
@@ -141,8 +143,22 @@ public class Menu
                 int posStud = Integer.parseInt(scanner.nextLine());
                 System.out.println("Please input grade's value: ");
                 int gradeValue = Integer.parseInt(scanner.nextLine());
-                Grade grade = new Grade(gradeValue, posDisc, posStud);//Must give the student from posStud same for discipline
+                Grade grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));//Must give the student from posStud same for discipline
                 this.controller.giveGrade(grade);
+                break;
+            }
+            case "8" : {
+                for(Grade grade : this.controller.getAllGrades()){
+                    System.out.println(grade.toString());
+                }
+                break;                                                          //FOR CASES 7 8 9 CHANGES WILL BE MADE TO MAKE
+                                                                                //THEM MORE PRACTICAL IN TERMS OF OPERATING
+                                                                                //WITH GRADES
+            }
+            case "9" : {
+                System.out.println("Please input the grade's position");
+                int pos = Integer.parseInt(scanner.nextLine());
+                this.controller.removeGradeFromPosition(pos);
                 break;
             }
             default:

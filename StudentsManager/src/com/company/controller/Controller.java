@@ -57,4 +57,18 @@ public class Controller
     public void giveGrade (Grade grade) {
         this.repository.giveGrade(grade);
     }
+
+    public Student getStudentFromPosition(int posStud){
+        return this.repository.getStudentFromPosition(posStud);
+    }
+
+    public Discipline getDisciplineFromPosition(int posDisc){ return this.repository.getDisciplineFromPosition(posDisc); }
+
+    public ArrayList<Grade> getAllGrades() { return this.repository.getGrades(); }
+
+    public void removeGradeFromPosition(int pos){
+        this.repository.removeGradeFromPosition(pos);
+    }
+
+
 }
