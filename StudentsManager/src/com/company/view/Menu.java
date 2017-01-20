@@ -40,6 +40,9 @@ public class Menu
         System.out.println("7. Give a Student a Grade");
         System.out.println("8. View all Grades");
         System.out.println("9. Remove Grade");
+        System.out.println("10. Add Teacher");
+        System.out.println("11. View Teachers");
+        System.out.println("12. Remove Teacher");
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
@@ -70,38 +73,19 @@ public class Menu
                 break;
             }
             case "3" : {
-                System.out.println("If you want to manually input the student press 1, if you want to select the student from a certain position press 2.");
-                userInput = scanner.nextLine();
-                switch (userInput) {
-                    case "1" : {
-                        System.out.println("Input First Name: ");
-                        String firstName = scanner.nextLine();
-                        System.out.println("Input Last Name: ");
-                        String lastName = scanner.nextLine();
-                        System.out.println("Input Age: ");
-                        int age = Integer.parseInt(scanner.nextLine());
-                        Student student = new Student(firstName, lastName, age);
-                        this.controller.removeStdudent(student);
-                        break;
-                    }
-                    case "2" : {
-                        this.controller.sortByFirstName();
-                        System.out.println("Input position: ");
-                        int pos = Integer.parseInt(scanner.nextLine());
-                        this.controller.removeStudentFormPosition(pos);
-                    }
+                this.controller.sortByFirstName();
+                for(Student student : this.controller.getAllStudents()) {
+                    System.out.println(student.toString());
                 }
+                System.out.println("Input position: ");
+                int pos = Integer.parseInt(scanner.nextLine());
+                this.controller.removeStudentFormPosition(pos);
                 break;
             }
             case "4" : {
-                System.out.println("Input teacher name: ");
-                String name = scanner.nextLine();
-                System.out.println("Input teacher age: ");
-                int age = Integer.parseInt(scanner.nextLine());
-                Teacher teacher = new Teacher(name,age);
                 System.out.println("Input discipline name: ");
                 String disciplineName = scanner.nextLine();
-                Discipline discipline = new Discipline(disciplineName,teacher);
+                Discipline discipline = new Discipline(disciplineName);
                 this.controller.addDiscipline(discipline);
                 break;
             }
@@ -112,38 +96,28 @@ public class Menu
                 break;
             }
             case "6" : {
-                System.out.println("If you want to manually input the discipline press 1, if you want to select the discipline from a certain position press 2.");
-                userInput = scanner.nextLine();
-                switch (userInput) {
-                    case "1" : {
-                        System.out.println("Input teacher name: ");
-                        String name = scanner.nextLine();
-                        System.out.println("Input teacher age: ");
-                        int age = Integer.parseInt(scanner.nextLine());
-                        Teacher teacher = new Teacher(name,age);
-                        System.out.println("Input discipline name: ");
-                        String disciplineName = scanner.nextLine();
-                        Discipline discipline = new Discipline(disciplineName,teacher);
-                        this.controller.removeDiscipline(discipline);
-                        break;
-                    }
-                    case "2" : {
-                        System.out.println("Note: use no.5 function to make sure what you are deleting ;)");
-                        System.out.println("Input position: ");
-                        int pos = Integer.parseInt(scanner.nextLine());
-                        this.controller.removeDisciplineFromPosition(pos);
-                    }
+                for (Discipline discipline : this.controller.getAllDisciplines()){
+                    System.out.println(discipline.toString());
                 }
+                System.out.println("Input position: ");
+                int pos = Integer.parseInt(scanner.nextLine());
+                this.controller.removeDisciplineFromPosition(pos);
                 break;
             }
             case "7" : {
-                System.out.println("Please input discipline's position (use function no.5 if you are not sure): ");
+                for (Discipline discipline : this.controller.getAllDisciplines()){
+                    System.out.println(discipline.toString());
+                }
+                System.out.println("Please input discipline's position: ");
                 int posDisc = Integer.parseInt(scanner.nextLine());
-                System.out.println("Please input student's position (use function no.2 if you are not sure): ");
+                for(Student student : this.controller.getAllStudents()) {
+                    System.out.println(student.toString());
+                }
+                System.out.println("Please input student's position: ");
                 int posStud = Integer.parseInt(scanner.nextLine());
                 System.out.println("Please input grade's value: ");
                 int gradeValue = Integer.parseInt(scanner.nextLine());
-                Grade grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));//Must give the student from posStud same for discipline
+                Grade grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));
                 this.controller.giveGrade(grade);
                 break;
             }
@@ -151,14 +125,47 @@ public class Menu
                 for(Grade grade : this.controller.getAllGrades()){
                     System.out.println(grade.toString());
                 }
-                break;                                                          //FOR CASES 7 8 9 CHANGES WILL BE MADE TO MAKE
-                                                                                //THEM MORE PRACTICAL IN TERMS OF OPERATING
-                                                                                //WITH GRADES
+                break;
             }
             case "9" : {
+                for(Grade grade : this.controller.getAllGrades()){
+                    System.out.println(grade.toString());
+                }
                 System.out.println("Please input the grade's position");
                 int pos = Integer.parseInt(scanner.nextLine());
                 this.controller.removeGradeFromPosition(pos);
+                break;
+            }
+            case "10" : {
+                System.out.println("Please Input Teacher Name: ");
+                String name = null;
+                try {
+                    name = scanner.nextLine();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Please Input Teacher Age: ");
+                int age = Integer.parseInt(scanner.nextLine());
+                System.out.println("Please Input Teacher Discipline: ");
+                String disciplineName = scanner.nextLine();
+                Discipline discipline = new Discipline(disciplineName);
+                Teacher teacher = new Teacher(name,age,discipline);
+                this.controller.addTeacher(teacher);
+                break;
+            }
+            case "11" : {
+                for (Teacher teacher : this.controller.getTeachers()){
+                    System.out.println(teacher.toString());
+                }
+                break;
+            }
+            case "12" : {
+                for (Teacher teacher : this.controller.getTeachers()){
+                    System.out.println(teacher.toString());
+                }
+                System.out.println("Please Input Teacher's postion: ");
+                int posT = Integer.parseInt(scanner.nextLine());
+                this.controller.removeTeacher(posT);
                 break;
             }
             default:

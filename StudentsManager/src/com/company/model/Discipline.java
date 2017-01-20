@@ -4,24 +4,19 @@ import java.util.ArrayList;
 
 public class Discipline {
     private String name;
-    private Teacher teacher;
 
-    public Discipline(String name, Teacher teacher){
+
+    public Discipline(String name){
         this.name = name;
-        this.teacher = teacher;
     }
 
     public String getName() {
         return name;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
     @Override
     public String toString() {
-        return "Teacher name: "+this.getTeacher() + "\n" + "Discipline name: " + this.getName() + "\n";
+        return "Discipline name: " + name + "\n";
     }
 
     @Override
@@ -31,14 +26,11 @@ public class Discipline {
 
         Discipline that = (Discipline) o;
 
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return teacher != null ? teacher.equals(that.teacher) : that.teacher == null;
+        return name != null ? name.equals(that.name) : that.name == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
-        return result;
+        return name != null ? name.hashCode() : 0;
     }
 }

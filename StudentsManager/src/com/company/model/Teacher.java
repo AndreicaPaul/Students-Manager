@@ -6,10 +6,12 @@ package com.company.model;
 public class Teacher {
     private String name;
     private int age;
+    private Discipline discipline;
 
-    public Teacher(String name, int age) {
+    public Teacher(String name, int age, Discipline discipline) {
         this.name = name;
         this.age = age;
+        this.discipline = discipline;
     }
     public String getName(){
         return this.name;
@@ -19,9 +21,11 @@ public class Teacher {
         return this.age;
     }
 
+    public Discipline getDiscipline(){ return this.discipline; }
+
     @Override
     public String toString() {
-        return this.getName()+ "\n" + "Theacher age: " + this.getAge();
+        return "Teacher name: " + this.getName() + "\n" + "Theacher age: " + this.getAge() + "\n" + this.getDiscipline() + "\n" ;
     }
 
     @Override

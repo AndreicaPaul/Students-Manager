@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.model.Discipline;
 import com.company.model.Grade;
 import com.company.model.Student;
+import com.company.model.Teacher;
 import com.company.repository.Repository;
 
 import java.util.ArrayList;
@@ -70,5 +71,16 @@ public class Controller
         this.repository.removeGradeFromPosition(pos);
     }
 
+    public void addTeacher (Teacher teacher){
+        this.repository.addTeacher(teacher);
+    }
+
+    public ArrayList<Teacher> getTeachers(){
+        return this.repository.getTeachers();
+    }
+
+    public void removeTeacher (int posT){
+        this.repository.removeTeacher(posT);
+    }
 
 }
