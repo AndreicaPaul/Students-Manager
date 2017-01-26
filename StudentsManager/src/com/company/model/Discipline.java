@@ -1,8 +1,6 @@
 package com.company.model;
 
-import java.util.ArrayList;
-
-public class Discipline {
+public class Discipline extends Object {
     private String name;
 
 

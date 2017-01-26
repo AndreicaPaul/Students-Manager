@@ -1,0 +1,4 @@
+Student: Andreica Paul 16
+Discipline: Romana
+10
+---------------------------

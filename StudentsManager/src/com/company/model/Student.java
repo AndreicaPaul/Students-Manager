@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Created by itbrainiacs1 on 12/23/16.
  */
-public class Student  { //Use own superclass
+public class Student { //Use own superclass
     private String firstName;
     private String lastName;
     private int age;

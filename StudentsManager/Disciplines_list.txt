@@ -1,0 +1,6 @@
+Discipline name: Matematica
+
+Discipline name: Romana
+
+Discipline name: Engleza
+

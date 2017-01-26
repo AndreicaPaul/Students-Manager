@@ -3,7 +3,7 @@ package com.company.model;
 /**
  * Created by itbrainiacs1 on 1/13/17.
  */
-public class Grade {
+public class Grade extends Object {
     private int value;
     private Discipline discipline;
     private Student student;

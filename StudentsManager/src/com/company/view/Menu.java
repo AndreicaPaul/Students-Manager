@@ -1,10 +1,7 @@
 package com.company.view;
 
 import com.company.controller.Controller;
-import com.company.model.Discipline;
-import com.company.model.Grade;
-import com.company.model.Student;
-import com.company.model.Teacher;
+import com.company.model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -55,11 +52,43 @@ public class Menu
             case "1":
             {
                 System.out.println("Input First Name: ");
-                String firstName = scanner.nextLine();
+                String firstName = null;
+                try {
+                    firstName = scanner.nextLine();
+                    if(firstName.matches(".*\\d+.*")){
+                        throw new StringContainsNumbersException();
+                    }
+                } catch (StringContainsNumbersException e) {
+                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("Input Last Name: ");
-                String lastName = scanner.nextLine();
+                String lastName = null;
+                try {
+                    lastName = scanner.nextLine();
+                    if(lastName.matches(".*\\d+.*")){
+                        throw  new StringContainsNumbersException();
+                    }
+                } catch (StringContainsNumbersException e) {
+                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("Input Age: ");
-                int age = Integer.parseInt(scanner.nextLine());
+                int age = 0;
+                try {
+                    age = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! This student won't be saved.");
+                    break;
+                }
                 Student student = new Student(firstName,lastName,age);
                 this.controller.addStudent(student);
                 break;
@@ -78,13 +107,27 @@ public class Menu
                     System.out.println(student.toString());
                 }
                 System.out.println("Input position: ");
-                int pos = Integer.parseInt(scanner.nextLine());
+                int pos = 0;
+                try {
+                    pos = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! Nothing erased.");
+                    break;
+                }
                 this.controller.removeStudentFormPosition(pos);
                 break;
             }
             case "4" : {
                 System.out.println("Input discipline name: ");
-                String disciplineName = scanner.nextLine();
+                String disciplineName = null;
+                try {
+                    disciplineName = scanner.nextLine();
+                    if(disciplineName.matches(".*\\d+.*")){
+                        throw new StringContainsNumbersException();
+                    }
+                } catch (StringContainsNumbersException e) {
+                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
+                }
                 Discipline discipline = new Discipline(disciplineName);
                 this.controller.addDiscipline(discipline);
                 break;
@@ -100,7 +143,13 @@ public class Menu
                     System.out.println(discipline.toString());
                 }
                 System.out.println("Input position: ");
-                int pos = Integer.parseInt(scanner.nextLine());
+                int pos = 0;
+                try {
+                    pos = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! Nothing erased.");
+                    break;
+                }
                 this.controller.removeDisciplineFromPosition(pos);
                 break;
             }
@@ -109,14 +158,32 @@ public class Menu
                     System.out.println(discipline.toString());
                 }
                 System.out.println("Please input discipline's position: ");
-                int posDisc = Integer.parseInt(scanner.nextLine());
+                int posDisc = 0;
+                try {
+                    posDisc = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! The app will reset now.");
+                    break;
+                }
                 for(Student student : this.controller.getAllStudents()) {
                     System.out.println(student.toString());
                 }
                 System.out.println("Please input student's position: ");
-                int posStud = Integer.parseInt(scanner.nextLine());
+                int posStud = 0;
+                try {
+                    posStud = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! The app will reset now.");
+                    break;
+                }
                 System.out.println("Please input grade's value: ");
-                int gradeValue = Integer.parseInt(scanner.nextLine());
+                int gradeValue = 0;
+                try {
+                    gradeValue = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! The app will reset now.");
+                    break;
+                }
                 Grade grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));
                 this.controller.giveGrade(grade);
                 break;
@@ -132,7 +199,13 @@ public class Menu
                     System.out.println(grade.toString());
                 }
                 System.out.println("Please input the grade's position");
-                int pos = Integer.parseInt(scanner.nextLine());
+                int pos = 0;
+                try {
+                    pos = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! Nothing erased.");
+                    break;
+                }
                 this.controller.removeGradeFromPosition(pos);
                 break;
             }
@@ -141,13 +214,30 @@ public class Menu
                 String name = null;
                 try {
                     name = scanner.nextLine();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    if(name.matches(".*\\d+.*")){
+                        throw new StringContainsNumbersException();
+                    }
+                } catch (StringContainsNumbersException e) {
+                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
                 }
                 System.out.println("Please Input Teacher Age: ");
-                int age = Integer.parseInt(scanner.nextLine());
+                int age = 0;
+                try {
+                    age = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! App will reset now.");
+                    break;
+                }
                 System.out.println("Please Input Teacher Discipline: ");
-                String disciplineName = scanner.nextLine();
+                String disciplineName = null;
+                try {
+                    disciplineName = scanner.nextLine();
+                    if(disciplineName.matches(".*\\d+.*")){
+                        throw new StringContainsNumbersException();
+                    }
+                } catch (StringContainsNumbersException e) {
+                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
+                }
                 Discipline discipline = new Discipline(disciplineName);
                 Teacher teacher = new Teacher(name,age,discipline);
                 this.controller.addTeacher(teacher);
@@ -164,7 +254,13 @@ public class Menu
                     System.out.println(teacher.toString());
                 }
                 System.out.println("Please Input Teacher's postion: ");
-                int posT = Integer.parseInt(scanner.nextLine());
+                int posT = 0;
+                try {
+                    posT = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error, please input a number! Nothing erased.");
+                    break;
+                }
                 this.controller.removeTeacher(posT);
                 break;
             }
