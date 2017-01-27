@@ -1,6 +1,6 @@
 package com.company.model;
 
-public class Discipline extends Object {
+public class Discipline extends Object implements FileSavingObject {
     private String name;
 
 
@@ -30,5 +30,10 @@ public class Discipline extends Object {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    @Override
+    public String stringForFileWriting() {
+        return this.name;
     }
 }

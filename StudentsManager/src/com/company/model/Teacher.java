@@ -3,7 +3,7 @@ package com.company.model;
 /**
  * Created by itbrainiacs1 on 1/13/17.
  */
-public class Teacher extends Object {
+public class Teacher extends Object implements FileSavingObject {
     private String name;
     private int age;
     private Discipline discipline;
@@ -44,5 +44,10 @@ public class Teacher extends Object {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + age;
         return result;
+    }
+
+    @Override
+    public String stringForFileWriting() {
+        return this.name + ";" + this.age + ";" + this.discipline.stringForFileWriting();
     }
 }

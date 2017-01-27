@@ -1,8 +1,11 @@
 package com.company.repository;
 import com.company.model.*;
+
+import java.io.*;
+import java.lang.reflect.Array;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.PrintWriter;
 
 public class Repository {
 
@@ -14,15 +17,19 @@ public class Repository {
     //---------------------------------------------------------------------------------------------------------
 
     public Repository (){
+        this.loadStudentsFromFile();
+        this.loadDisciplinesFromFile();
+        this.loadTeachersFromFile();
+        //
     }
 
     //General writer
-    private void saveObjectsInFile(ArrayList<? extends Object> mySuperclassArrayList, String fileName) throws Exception {
+    private void saveObjectsInFile(ArrayList<? extends FileSavingObject> objects, String fileName) throws Exception {
         PrintWriter writer = null;
         try {
             writer = new PrintWriter(fileName, "UTF-8");
-            for (Object mySuperclass : mySuperclassArrayList) {
-                writer.println(mySuperclass.toString());
+            for (FileSavingObject object : objects) {
+                writer.println(object.stringForFileWriting());
             }
             writer.close();
         } catch (Exception e) {
@@ -31,6 +38,67 @@ public class Repository {
 
     }
 
+    //File reading
+    private void loadStudentsFromFile(){
+        try {
+            FileReader fileReader = new FileReader("Students_list.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();
+            while (line != null){
+                String[] studentComponents = line.split(";");
+                Student student = new Student(studentComponents[0],studentComponents[1],Integer.parseInt(studentComponents[2]));
+                this.students.add(student);
+                line = bufferedReader.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadDisciplinesFromFile(){
+        try {
+            FileReader fileReader = new FileReader("Disciplines_list.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();
+            while (line != null){
+                String disciplineName = line;
+                Discipline discipline = new Discipline(disciplineName);
+                this.disciplines.add(discipline);
+                line = bufferedReader.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadTeachersFromFile(){
+        try {
+            FileReader fileReader = new FileReader("Teachers_list.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();
+            while (line != null){
+                String[] teacherComponents = line.split(";");
+                Discipline discipline = null;
+                for (Discipline existingDiscipline : this.disciplines){
+                    if(existingDiscipline.stringForFileWriting().equals(teacherComponents[2])){
+                        discipline = existingDiscipline;
+                        break;
+                    }
+                }
+                if(discipline == null){
+                    discipline = new Discipline(teacherComponents[2]);
+                    this.addDiscipline(discipline);
+                }
+                Teacher teacher = new Teacher(teacherComponents[0],Integer.parseInt(teacherComponents[1]),discipline);
+                this.teachers.add(teacher);
+                line = bufferedReader.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Add/Remove/Read operations
     public void addStudent(Student student) {
         this.students.add(student);
         try {

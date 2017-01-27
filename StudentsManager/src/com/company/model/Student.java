@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Created by itbrainiacs1 on 12/23/16.
  */
-public class Student { //Use own superclass
+public class Student implements FileSavingObject { //Use own superclass
     private String firstName;
     private String lastName;
     private int age;
@@ -69,6 +69,11 @@ public class Student { //Use own superclass
             //return StudentName2.compareTo(StudentName1);
         }
     };
+
+    @Override
+    public String stringForFileWriting() {
+        return this.firstName + ";" + this.lastName + ";" + this.age;
+    }
 
     //    @Override
 //    public int compare(Student s1, Student s2) {

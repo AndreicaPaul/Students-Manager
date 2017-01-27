@@ -1,5 +1,1 @@
-Teacher name: Cineva
-Theacher age: 50
-Discipline name: Matematica
-
-
+teacher;25;info
