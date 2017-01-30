@@ -1,1 +1,1 @@
-10;info;Andreica;Paul;12
+10;istorie;Andreica;Paul;12

@@ -20,7 +20,7 @@ public class Repository {
         this.loadStudentsFromFile();
         this.loadDisciplinesFromFile();
         this.loadTeachersFromFile();
-        //
+        this.loadGradesFromFile();
     }
 
     //General writer
@@ -98,6 +98,44 @@ public class Repository {
         }
     }
 
+    private void loadGradesFromFile(){
+        try {
+            FileReader fileReader = new FileReader("Grades_list.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();                             //value+discipline+student
+            while (line != null){
+                String[] gradeComponents = line.split(";");
+                Discipline discipline = null;
+                for (Discipline existingDiscipline : this.disciplines){
+                    if(existingDiscipline.stringForFileWriting().equals(gradeComponents[1])){
+                        discipline = existingDiscipline;
+                        break;
+                    }
+                }
+                if(discipline == null){
+                    discipline = new Discipline(gradeComponents[1]);
+                    this.addDiscipline(discipline);
+                }
+                Student student = null;
+                Student fileStudent = new Student(gradeComponents[2],gradeComponents[3],Integer.parseInt(gradeComponents[4]));
+                for(Student existingStudent : this.students){
+                    if(existingStudent.equals(fileStudent)){
+                        student = existingStudent;
+                        break;
+                    }
+                }
+                if(student == null){
+                    student = new Student(gradeComponents[2],gradeComponents[3],Integer.parseInt(gradeComponents[4]));
+                    this.addStudent(student);
+                }
+                Grade grade = new Grade(Integer.parseInt(gradeComponents[0]),discipline,student);
+                this.grades.add(grade);
+                line = bufferedReader.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     //Add/Remove/Read operations
     public void addStudent(Student student) {
         this.students.add(student);

@@ -50,7 +50,7 @@ public class Grade extends Object implements FileSavingObject {
 
     @Override
     public String toString() {
-        return "Student: " + student + "\n" + "Discipline: " + discipline.getName() + "\n" + value + "\n" + "---------------------------";
+        return "Student: " + student + "\n" + "Discipline: " + discipline.getName() + "\n" + "Grade: " + value + "\n" ;
     }
 
     @Override
