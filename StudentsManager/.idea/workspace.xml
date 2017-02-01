@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2d7c418a-80ef-4420-ba24-43fb158e06ff" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Disciplines_list.txt" afterPath="$PROJECT_DIR$/Disciplines_list.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Grades_list.txt" afterPath="$PROJECT_DIR$/Grades_list.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Students_list.txt" afterPath="$PROJECT_DIR$/Students_list.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Teachers_list.txt" afterPath="$PROJECT_DIR$/Teachers_list.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/model/Grade.java" afterPath="$PROJECT_DIR$/src/com/company/model/Grade.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/repository/Repository.java" afterPath="$PROJECT_DIR$/src/com/company/repository/Repository.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/view/Menu.java" afterPath="$PROJECT_DIR$/src/com/company/view/Menu.java" />
     </list>
@@ -31,13 +27,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/view/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="383" column="45" lean-forward="false" selection-start-line="383" selection-start-column="45" selection-end-line="383" selection-end-column="45" />
+            <state relative-caret-position="340">
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#run#0;class#Menu#0" expanded="false" />
+                <element signature="method#nameReader#0;class#Menu#0" expanded="false" />
+                <element signature="method#numberReader#0;class#Menu#0" expanded="false" />
                 <element signature="method#showStudentSubMenus#0;class#Menu#0" expanded="false" />
                 <element signature="method#showDisciplineSubMenus#0;class#Menu#0" expanded="false" />
                 <element signature="method#showGradeSubMenus#0;class#Menu#0" expanded="false" />
@@ -48,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Grade.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Grade.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/model/Grade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="52" column="117" lean-forward="false" selection-start-line="52" selection-start-column="117" selection-end-line="52" selection-end-column="117" />
+            <state relative-caret-position="833">
+              <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Repository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/repository/Repository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="814">
+              <caret line="218" column="63" lean-forward="false" selection-start-line="218" selection-start-column="63" selection-end-line="218" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -102,10 +111,10 @@
         <option value="$PROJECT_DIR$/src/com/company/model/Teacher.java" />
         <option value="$PROJECT_DIR$/src/com/company/model/Grade.java" />
         <option value="$PROJECT_DIR$/Teachers_list.txt" />
-        <option value="$PROJECT_DIR$/src/com/company/repository/Repository.java" />
         <option value="$PROJECT_DIR$/Grades_list.txt" />
         <option value="$PROJECT_DIR$/Disciplines_list.txt" />
         <option value="$PROJECT_DIR$/Students_list.txt" />
+        <option value="$PROJECT_DIR$/src/com/company/repository/Repository.java" />
         <option value="$PROJECT_DIR$/src/com/company/view/Menu.java" />
       </list>
     </option>
@@ -134,8 +143,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -281,14 +288,16 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_d7effa1a4a322478cd29c826b52a0c118ad3db11/cmd/git.exe" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_f02737a78695063deace08e96d5042710d3e32db/cmd/git.exe" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -533,7 +542,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17475729" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18203883" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -553,7 +562,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -584,7 +593,10 @@
         <state relative-caret-position="187">
           <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#run#0;class#Menu#0" expanded="false" />
+            <element signature="method#nameReader#0;class#Menu#0" expanded="false" />
+            <element signature="method#numberReader#0;class#Menu#0" expanded="false" />
             <element signature="method#showStudentSubMenus#0;class#Menu#0" expanded="false" />
             <element signature="method#showDisciplineSubMenus#0;class#Menu#0" expanded="false" />
             <element signature="method#showGradeSubMenus#0;class#Menu#0" expanded="false" />
@@ -623,7 +635,10 @@
         <state relative-caret-position="187">
           <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#run#0;class#Menu#0" expanded="false" />
+            <element signature="method#nameReader#0;class#Menu#0" expanded="false" />
+            <element signature="method#numberReader#0;class#Menu#0" expanded="false" />
             <element signature="method#showStudentSubMenus#0;class#Menu#0" expanded="false" />
             <element signature="method#showDisciplineSubMenus#0;class#Menu#0" expanded="false" />
             <element signature="method#showGradeSubMenus#0;class#Menu#0" expanded="false" />
@@ -663,7 +678,10 @@
         <state relative-caret-position="165">
           <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#run#0;class#Menu#0" expanded="false" />
+            <element signature="method#nameReader#0;class#Menu#0" expanded="false" />
+            <element signature="method#numberReader#0;class#Menu#0" expanded="false" />
             <element signature="method#showStudentSubMenus#0;class#Menu#0" expanded="false" />
             <element signature="method#showDisciplineSubMenus#0;class#Menu#0" expanded="false" />
             <element signature="method#showGradeSubMenus#0;class#Menu#0" expanded="false" />
@@ -790,14 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/repository/Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="121" column="38" lean-forward="false" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -816,34 +826,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/view/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="383" column="45" lean-forward="false" selection-start-line="383" selection-start-column="45" selection-end-line="383" selection-end-column="45" />
-          <folding>
-            <element signature="method#run#0;class#Menu#0" expanded="false" />
-            <element signature="method#showStudentSubMenus#0;class#Menu#0" expanded="false" />
-            <element signature="method#showDisciplineSubMenus#0;class#Menu#0" expanded="false" />
-            <element signature="method#showGradeSubMenus#0;class#Menu#0" expanded="false" />
-            <element signature="method#showTeacherSubMenus#0;class#Menu#0" expanded="false" />
-            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Grades_list.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Students_list.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -851,7 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -859,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -867,15 +851,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/model/Grade.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="52" column="117" lean-forward="false" selection-start-line="52" selection-start-column="117" selection-end-line="52" selection-end-column="117" />
+        <state relative-caret-position="833">
+          <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Students_list.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/repository/Repository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="814">
+          <caret line="218" column="63" lean-forward="false" selection-start-line="218" selection-start-column="63" selection-end-line="218" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/view/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#run#0;class#Menu#0" expanded="false" />
+            <element signature="method#nameReader#0;class#Menu#0" expanded="false" />
+            <element signature="method#numberReader#0;class#Menu#0" expanded="false" />
+            <element signature="method#showStudentSubMenus#0;class#Menu#0" expanded="false" />
+            <element signature="method#showDisciplineSubMenus#0;class#Menu#0" expanded="false" />
+            <element signature="method#showGradeSubMenus#0;class#Menu#0" expanded="false" />
+            <element signature="method#showTeacherSubMenus#0;class#Menu#0" expanded="false" />
+            <element signature="method#showMenu#0;class#Menu#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

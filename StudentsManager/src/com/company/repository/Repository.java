@@ -206,18 +206,38 @@ public class Repository {
 
     public void removeStudentFromPosition (int pos){
         students.remove(pos);
+        try {
+            saveObjectsInFile(students,"Students_list.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeDisciplineFromPosition (int pos){
         disciplines.remove(pos);
+        try {
+            saveObjectsInFile(disciplines,"Disciplines_list.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeGradeFromPosition (int pos){
         grades.remove(pos);
+        try {
+            saveObjectsInFile(grades,"Grades_list.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeTeacher(int posT){
         teachers.remove(posT);
+        try {
+            saveObjectsInFile(teachers,"Teachers_list.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void sortByFirstName(){

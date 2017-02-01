@@ -2,9 +2,6 @@ package com.company.view;
 
 import com.company.controller.Controller;
 import com.company.model.*;
-
-import java.awt.font.NumericShaper;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,6 +10,7 @@ import java.util.Scanner;
 public class Menu
 {
     private Controller controller;
+    private Scanner scanner = new Scanner(System.in);
     public Menu(Controller controller){
         this.controller = controller;
     }
@@ -24,12 +22,39 @@ public class Menu
         }
     }
 
+    private String nameReader(){
+        String name = null;
+        try {
+            name = scanner.nextLine();
+            if(name.matches(".*\\d+.*")){
+                throw new StringContainsNumbersException();
+            }
+        } catch (Exception e) {
+            if(e instanceof StringContainsNumbersException){
+                System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
+            }
+            else{
+                System.out.println("We didn't saw that coming! :)");
+            }
+        }
+        return name;
+    }
+
+    private int numberReader(){
+        int number = 0;
+        try {
+            number = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Error, please input a number! Nothing changed.");
+        }
+        return number;
+    }
+
     private void showStudentSubMenus(){
         System.out.println("    1. Add Student");
         System.out.println("    2. View all Students");
         System.out.println("    3. Remove Student");
         System.out.println("    4. Return to main menu");
-        Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
         switch (userInput){
@@ -41,36 +66,11 @@ public class Menu
             case "1":
             {
                 System.out.println("Input First Name: ");
-                String firstName = null;
-                try {
-                    firstName = scanner.nextLine();
-                    if(firstName.matches(".*\\d+.*")){
-                        throw new StringContainsNumbersException();
-                    }
-                } catch (StringContainsNumbersException e) {
-                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
-                }
-
+                String firstName = nameReader();
                 System.out.println("Input Last Name: ");
-                String lastName = null;
-                try {
-                    lastName = scanner.nextLine();
-                    if(lastName.matches(".*\\d+.*")){
-                        throw  new StringContainsNumbersException();
-                    }
-                } catch (StringContainsNumbersException e) {
-                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
-                }
-
+                String lastName = nameReader();
                 System.out.println("Input Age: ");
-                int age = 0;
-                try {
-                    age = Integer.parseInt(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Error, please input a number! This student won't be saved.");
-                    break;
-                }
-
+                int age = numberReader();
                 Student student = new Student(firstName,lastName,age);
                 this.controller.addStudent(student);
                 break;
@@ -89,16 +89,20 @@ public class Menu
                     System.out.println(student.toString());
                 }
                 System.out.println("Input position: ");
-                int pos = 0;
-                try {
-                    pos = Integer.parseInt(scanner.nextLine());
-
-                } catch(NumberFormatException |  IndexOutOfBoundsException e){
-                        System.out.println("Error, please input a valid number! Nothing erased.");
-                        break;
+                int pos = numberReader();
+                if(pos == -1){
+                    break;
                 }
-
-                this.controller.removeStudentFormPosition(pos);
+                try {
+                    this.controller.removeStudentFormPosition(pos);
+                } catch (Exception e) {
+                    if(e instanceof IndexOutOfBoundsException) {
+                        System.out.println("Index out of bounds, please recheck the number of students!");
+                    }
+                    else {
+                        System.out.println("We didn't saw that coming! :)");
+                    }
+                }
                 break;
             }
             case "4" : {
@@ -117,7 +121,6 @@ public class Menu
         System.out.println("    2. View all Disciplines");
         System.out.println("    3. Remove Discipline");
         System.out.println("    4. Return to main menu");
-        Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
         switch (userInput){
@@ -127,16 +130,7 @@ public class Menu
             }
             case "1" : {
                 System.out.println("Input discipline name: ");
-                String disciplineName = null;
-                try {
-                    disciplineName = scanner.nextLine();
-                    if(disciplineName.matches(".*\\d+.*")){
-                        throw new StringContainsNumbersException();
-                    }
-                } catch (StringContainsNumbersException e) {
-                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
-                }
-
+                String disciplineName = nameReader();
                 Discipline discipline = new Discipline(disciplineName);
                 this.controller.addDiscipline(discipline);
                 break;
@@ -153,14 +147,17 @@ public class Menu
                 }
 
                 System.out.println("Input position: ");
-                int pos = 0;
+                int pos = numberReader();
                 try {
-                    pos = Integer.parseInt(scanner.nextLine());
-                } catch(NumberFormatException | IndexOutOfBoundsException e){
-                    System.out.println("Error, please input a valid number! Nothing erased.");
-                    break;
+                    this.controller.removeDisciplineFromPosition(pos);
+                } catch (Exception e) {
+                    if(e instanceof IndexOutOfBoundsException) {
+                        System.out.println("Index out of bounds, please recheck the number of disciplines!");
+                    }
+                    else {
+                        System.out.println("We didn't saw that coming! :)");
+                    }
                 }
-                this.controller.removeDisciplineFromPosition(pos);
                 break;
             }
             case "4" : {
@@ -179,7 +176,6 @@ public class Menu
         System.out.println("    2. View all Grades");
         System.out.println("    3. Remove Grade");
         System.out.println("    4. Return to main menu");
-        Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
         switch (userInput){
@@ -192,35 +188,14 @@ public class Menu
                     System.out.println(discipline.toString());
                 }
                 System.out.println("Please input discipline's position: ");
-                int posDisc = 0;
-                try {
-                    posDisc = Integer.parseInt(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Error, please input a number! The app will reset now.");
-                    break;
-                }
-
+                int posDisc = numberReader();
                 for(Student student : this.controller.getAllStudents()) {
                     System.out.println(student.toString());
                 }
                 System.out.println("Please input student's position: ");
-                int posStud = 0;
-                try {
-                    posStud = Integer.parseInt(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Error, please input a number! The app will reset now.");
-                    break;
-                }
-
+                int posStud = numberReader();
                 System.out.println("Please input grade's value: ");
-                int gradeValue = 0;
-                try {
-                    gradeValue = Integer.parseInt(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Error, please input a number! The app will reset now.");
-                    break;
-                }
-
+                int gradeValue = numberReader();
                 Grade grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));
                 this.controller.giveGrade(grade);
                 break;
@@ -237,15 +212,17 @@ public class Menu
                 }
 
                 System.out.println("Please input the grade's position");
-                int pos = 0;
+                int pos = numberReader();
                 try {
-                    pos = Integer.parseInt(scanner.nextLine());
-                } catch(NumberFormatException | IndexOutOfBoundsException e){
-                    System.out.println("Error, please input a valid number! Nothing erased.");
-                    break;
+                    this.controller.removeGradeFromPosition(pos);
+                } catch (Exception e) {
+                    if(e instanceof IndexOutOfBoundsException) {
+                        System.out.println("Index out of bounds, please recheck the number of grades!");
+                    }
+                    else {
+                        System.out.println("We didn't saw that coming! :)");
+                    }
                 }
-
-                this.controller.removeGradeFromPosition(pos);
                 break;
             }
             case "4" : {
@@ -264,7 +241,6 @@ public class Menu
         System.out.println("    2. View Teachers");
         System.out.println("    3. Remove Teacher");
         System.out.println("    4. Return to main menu");
-        Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
         switch (userInput)
@@ -275,36 +251,11 @@ public class Menu
             }
             case "1" : {
                 System.out.println("Please Input Teacher Name: ");
-                String name = null;
-                try {
-                    name = scanner.nextLine();
-                    if(name.matches(".*\\d+.*")){
-                        throw new StringContainsNumbersException();
-                    }
-                } catch (StringContainsNumbersException e) {
-                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
-                }
-
+                String name = nameReader();
                 System.out.println("Please Input Teacher Age: ");
-                int age = 0;
-                try {
-                    age = Integer.parseInt(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Error, please input a number! App will reset now.");
-                    break;
-                }
-
+                int age = numberReader();
                 System.out.println("Please Input Teacher Discipline: ");
-                String disciplineName = null;
-                try {
-                    disciplineName = scanner.nextLine();
-                    if(disciplineName.matches(".*\\d+.*")){
-                        throw new StringContainsNumbersException();
-                    }
-                } catch (StringContainsNumbersException e) {
-                    System.out.println("Warning you have a number in the name! Suggestion: delete and reenter the name.");
-                }
-
+                String disciplineName = nameReader();
                 Discipline discipline = new Discipline(disciplineName);
                 Teacher teacher = new Teacher(name,age,discipline);
                 this.controller.addTeacher(teacher);
@@ -322,14 +273,16 @@ public class Menu
                 }
 
                 System.out.println("Please Input Teacher's postion: ");
-                int posT = 0;
+                int pos = numberReader();
                 try {
-                    posT = Integer.parseInt(scanner.nextLine());
-                } catch(NumberFormatException | IndexOutOfBoundsException e){
-                    System.out.println("Error, please input a valid number! Nothing erased.");
-                    break;
+                    this.controller.removeTeacher(pos);
+                } catch (Exception e) {
+                    if(e instanceof IndexOutOfBoundsException)
+                        System.out.println("Index out of bounds, please recheck the number of teachers!");
+                    else {
+                        System.out.println("We didn't saw that coming! :)");
+                    }
                 }
-                this.controller.removeTeacher(posT);
                 break;
             }
             case "4" : {
@@ -349,7 +302,6 @@ public class Menu
         System.out.println("2. Disciplines");
         System.out.println("3. Grades");
         System.out.println("4. Teachers");
-        Scanner scanner = new Scanner(System.in);
         String userInput = "";
         userInput = scanner.nextLine();
         switch (userInput)
@@ -381,4 +333,3 @@ public class Menu
         }
     }
 }
-//Index out of bounds exception not catching!
