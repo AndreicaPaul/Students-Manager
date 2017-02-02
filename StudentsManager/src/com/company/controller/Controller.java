@@ -23,10 +23,6 @@ public class Controller
         this.repository.addStudent(student);
     }
 
-    public void removeStdudent (Student student) {
-        this.repository.removeStudent(student);
-}
-
     public ArrayList<Student> getAllStudents(){
         return this.repository.getStudents();
     }
@@ -37,10 +33,6 @@ public class Controller
 
     public ArrayList<Discipline> getAllDisciplines(){
         return this.repository.getDisciplines();
-    }
-
-    public void removeDiscipline(Discipline discipline){
-        this.repository.removeDiscipline(discipline);
     }
 
     public void sortByFirstName(){

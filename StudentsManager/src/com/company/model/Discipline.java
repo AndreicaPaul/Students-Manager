@@ -14,7 +14,7 @@ public class Discipline extends Object implements FileSavingObject {
 
     @Override
     public String toString() {
-        return "Discipline name: " + name + "\n";
+        return "Discipline name: " + name ;
     }
 
     @Override

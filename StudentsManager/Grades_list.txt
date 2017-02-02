@@ -1,1 +1,1 @@
-10;istorie;Andreica;Paul;12
+10;info;Popescu;Vlad;12

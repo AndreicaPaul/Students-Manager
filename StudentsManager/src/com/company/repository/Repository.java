@@ -6,16 +6,11 @@ import java.lang.reflect.Array;
 import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Collections;
-
 public class Repository {
-
-    //declarations---------------------------------------------------------------------------------------------
     private ArrayList<Student> students = new ArrayList<>();
     private ArrayList<Discipline> disciplines = new ArrayList<>();
     private ArrayList<Grade> grades = new ArrayList<>();
     private ArrayList<Teacher> teachers = new ArrayList<>();
-    //---------------------------------------------------------------------------------------------------------
-
     public Repository (){
         this.loadStudentsFromFile();
         this.loadDisciplinesFromFile();
@@ -33,7 +28,7 @@ public class Repository {
             }
             writer.close();
         } catch (Exception e) {
-            throw new Exception("Gresit");
+            System.out.println("Saving error!");
         }
 
     }
@@ -195,15 +190,6 @@ public class Repository {
         return  disciplines.get(posDisc);
     }
 
-    public void removeStudent(Student student)
-    {
-        students.remove(student);
-    }
-
-    public void removeDiscipline(Discipline discipline){
-        disciplines.remove(discipline);
-    }
-
     public void removeStudentFromPosition (int pos){
         students.remove(pos);
         try {
@@ -247,5 +233,4 @@ public class Repository {
             e.printStackTrace();
         }
     }
-
 }
