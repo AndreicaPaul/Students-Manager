@@ -17,7 +17,8 @@ public class Menu
         }
     }
 
-    private String reader() {
+    private String getUserInput(String inputMessage) {
+        System.out.println(inputMessage);
         String name = null;
         try {
             name = scanner.nextLine();
@@ -27,7 +28,7 @@ public class Menu
         return name;
     }
 
-    private boolean exceptionThrower(String name){
+    private boolean throwException(String name){
         try {
             if (name.matches(".*\\d+.*")) {
                 throw new StringContainsNumbersException();
@@ -36,18 +37,6 @@ public class Menu
             return true;
             }
         return false;
-    }
-
-    private int positionInput(){
-        System.out.println("Input position: ");
-        int pos = 0;
-        try {
-            pos = Integer.parseInt(reader());
-        } catch (NumberFormatException e) {
-            System.out.println("Please input a number! Nothing changed.");
-            return -1;
-        }
-        return pos;
     }
 
     private void showStudentSubMenus(){
@@ -65,30 +54,18 @@ public class Menu
             }
             case "1":
             {
-                System.out.println("Input First Name: ");
-                String firstName = reader();
-                if (exceptionThrower(firstName)){
-                    System.out.println("You have a number in the name! Name not saved.");
-                    break;
-                }
-                System.out.println("Input Last Name: ");
-                String lastName = reader();
-                if(exceptionThrower(lastName)){
-                    System.out.println("You have a number in the name! Name not saved.");
-                    break;
-                }
-                System.out.println("Input Age: ");
-                int age = 0;
+                String firstName = getUserInput("Input first name: ");
+                String lastName = getUserInput("Input last name: ");
                 try {
-                    age = Integer.parseInt(reader());
+                    int age = Integer.parseInt(getUserInput("Input age: "));
+                    Student student = new Student(firstName,lastName,age);
+                    this.controller.addStudent(student);
                 } catch (NumberFormatException e) {
-                    System.out.println("Please input a number! Nothing saved.");
-                    break;
+                    System.out.println("Invalid number! Nothing saved.");
+                } catch (StringContainsNumbersException e) {
+                    System.out.println(e.getMessage());
                 }
-                Student student = new Student(firstName,lastName,age);
-                this.controller.addStudent(student);
                 break;
-
             }
             case "2" : {
                 this.controller.sortByFirstName();
@@ -103,14 +80,11 @@ public class Menu
                     System.out.println(student.toString());
                 }
                 try {
-                    this.controller.removeStudentFormPosition(positionInput());
+                    this.controller.removeStudentFormPosition(Integer.parseInt(getUserInput("Input position.")));
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Index out of bounds, please recheck the number of students!");
                 } catch (Exception e) {
-                    if(e instanceof IndexOutOfBoundsException) {
-                        System.out.println("Index out of bounds, please recheck the number of students!");
-                    }
-                    else {
-                        System.out.println("We didn't saw that coming! :)");
-                    }
+                    System.out.println("We didn't saw that coming! :)");
                 }
                 break;
             }
@@ -138,9 +112,8 @@ public class Menu
                 break;
             }
             case "1" : {
-                System.out.println("Input discipline name: ");
-                String disciplineName = reader();
-                if(exceptionThrower(disciplineName)){
+                String disciplineName = getUserInput("Input discipline name: ");
+                if(throwException(disciplineName)){
                     System.out.println("You have a number in the name! Name not saved.");
                     break;
                 }
@@ -159,14 +132,11 @@ public class Menu
                     System.out.println(discipline.toString());
                 }
                 try {
-                    this.controller.removeDisciplineFromPosition(positionInput());
+                    this.controller.removeDisciplineFromPosition(Integer.parseInt(getUserInput("Input position: ")));
+                } catch (IndexOutOfBoundsException e){
+                    System.out.println("Index out of bounds.");
                 } catch (Exception e) {
-                    if(e instanceof IndexOutOfBoundsException) {
-                        System.out.println("Index out of bounds, please recheck the number of disciplines!");
-                    }
-                    else {
-                        System.out.println("We didn't saw that coming! :)");
-                    }
+                    System.out.println("We didn't saw that coming! :)");
                 }
                 break;
             }
@@ -197,21 +167,15 @@ public class Menu
                 for (Discipline discipline : this.controller.getAllDisciplines()){
                     System.out.println(discipline.toString());
                 }
-                int posDisc = positionInput();
-                if(posDisc == -1){
-                    break;
-                }
+                int posDisc = Integer.parseInt(getUserInput("Input discipline position: "));
                 for(Student student : this.controller.getAllStudents()) {
                     System.out.println(student.toString());
                 }
-                int posStud = positionInput();
-                if(posStud == -1){
-                    break;
-                }
+                int posStud = Integer.parseInt(getUserInput("Input student position: "));
                 System.out.println("Please input grade's value: ");
                 int gradeValue = 0;
                 try {
-                    gradeValue = Integer.parseInt(reader());
+                    gradeValue = Integer.parseInt(getUserInput("Input grade value: "));
                 } catch (NumberFormatException e) {
                     System.out.println("Please input a number! Nothing changed.");
                     break;
@@ -220,7 +184,7 @@ public class Menu
                 try {
                     grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));
                 } catch (Exception e) {
-                    System.out.println("Big error here, please reinput data!");
+                    System.out.println("Big error here, please reenter data!");
                     break;
                 }
                 this.controller.giveGrade(grade);
@@ -237,7 +201,7 @@ public class Menu
                     System.out.println(grade.toString());
                 }
                 try {
-                    this.controller.removeGradeFromPosition(positionInput());
+                    this.controller.removeGradeFromPosition(Integer.parseInt(getUserInput("Input position: ")));
                 } catch (Exception e) {
                     if(e instanceof IndexOutOfBoundsException) {
                         System.out.println("Index out of bounds, please recheck the number of grades!");
@@ -273,22 +237,20 @@ public class Menu
                 break;
             }
             case "1" : {
-                System.out.println("Please Input Teacher Name: ");
-                String name = reader();
-                if(exceptionThrower(name)){
+                String name = getUserInput("Please Input Teacher Name: ");
+                if(throwException(name)){
                     System.out.println("You have a number in your name! Nothing saved.");
                     break;
                 }
-                System.out.println("Please Input Teacher Age: ");
+                System.out.println();
                 int age = 0;
                 try {
-                    age = Integer.parseInt(reader());
+                    age = Integer.parseInt(getUserInput("Please Input Teacher Age: "));
                 } catch (NumberFormatException e) {
                     System.out.println("Please input a number! Nothing saved.");
                     break;
                 }
-                System.out.println("Please Input Teacher Discipline: ");
-                String disciplineName = reader();
+                String disciplineName = getUserInput("Please Input Teacher Discipline: ");
                 Discipline discipline = new Discipline(disciplineName);
                 Teacher teacher = new Teacher(name,age,discipline);
                 this.controller.addTeacher(teacher);
@@ -305,10 +267,10 @@ public class Menu
                     System.out.println(teacher.toString());
                 }
                 try {
-                    this.controller.removeTeacher(positionInput());
+                    this.controller.removeTeacher(Integer.parseInt(getUserInput("Input position")));
                 } catch (Exception e) {
                     if(e instanceof IndexOutOfBoundsException)
-                        System.out.println("Index out of bounds, please recheck the number of teachers!");
+                        System.out.println("Index out of bounds, please recheck the number of teachers!");              ///modificari!
                     else {
                         System.out.println("We didn't saw that coming! :)");
                     }

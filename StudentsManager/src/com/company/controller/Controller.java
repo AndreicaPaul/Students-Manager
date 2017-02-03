@@ -1,9 +1,6 @@
 package com.company.controller;
 
-import com.company.model.Discipline;
-import com.company.model.Grade;
-import com.company.model.Student;
-import com.company.model.Teacher;
+import com.company.model.*;
 import com.company.repository.Repository;
 
 import java.util.ArrayList;
@@ -19,7 +16,8 @@ public class Controller
         this.repository = repository;
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(Student student) throws StringContainsNumbersException, NumberFormatException {
+        Validator.validateStudent(student);
         this.repository.addStudent(student);
     }
 
