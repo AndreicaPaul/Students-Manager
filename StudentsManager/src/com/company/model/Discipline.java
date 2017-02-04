@@ -1,5 +1,4 @@
 package com.company.model;
-
 public class Discipline extends Object implements FileSavingObject {
     private String name;
 

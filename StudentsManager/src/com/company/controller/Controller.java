@@ -1,13 +1,8 @@
 package com.company.controller;
-
 import com.company.model.*;
 import com.company.repository.Repository;
 
 import java.util.ArrayList;
-
-/**
- * Created by itbrainiacs1 on 12/23/16.
- */
 public class Controller
 {
     private Repository repository;
@@ -25,7 +20,8 @@ public class Controller
         return this.repository.getStudents();
     }
 
-    public void addDiscipline(Discipline discipline){
+    public void addDiscipline(Discipline discipline) throws StringContainsNumbersException{
+        Validator.validateDiscipline(discipline);
         this.repository.addDiscipline(discipline);
     }
 
@@ -61,7 +57,8 @@ public class Controller
         this.repository.removeGradeFromPosition(pos);
     }
 
-    public void addTeacher (Teacher teacher){
+    public void addTeacher (Teacher teacher) throws StringContainsNumbersException, NumberFormatException{
+        Validator.validateTeacher(teacher);
         this.repository.addTeacher(teacher);
     }
 

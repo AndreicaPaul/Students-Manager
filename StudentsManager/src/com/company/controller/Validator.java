@@ -1,11 +1,8 @@
 package com.company.controller;
-
+import com.company.model.Discipline;
 import com.company.model.StringContainsNumbersException;
 import com.company.model.Student;
-
-/**
- * Created by itbrainiacs1 on 2/3/17.
- */
+import com.company.model.Teacher;
 public class Validator {
     public static void validateStudent(Student student) throws StringContainsNumbersException, NumberFormatException {
         if (student.getFirstName().matches(".*\\d+.*")) {
@@ -17,5 +14,19 @@ public class Validator {
         if (student.getAge() <= 7){
             throw new NumberFormatException("Invalid age.");
         }
+    }
+    public static void validateDiscipline (Discipline discipline) throws StringContainsNumbersException{
+        if (discipline.getName().matches(".*\\d+.*")) {
+            throw new StringContainsNumbersException("Invalid discipline name.");
+        }
+    }
+    public static void validateTeacher(Teacher teacher) throws StringContainsNumbersException, NumberFormatException{
+        if(teacher.getAge() < 18){
+            throw new NumberFormatException("Invalid age.");
+        }
+        if(teacher.getName().matches(".*\\d+.*"));{
+            throw new StringContainsNumbersException("Invalid name.");
+        }
+
     }
 }

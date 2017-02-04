@@ -1,8 +1,4 @@
 package com.company.model;
-
-/**
- * Created by itbrainiacs1 on 1/13/17.
- */
 public class Teacher extends Object implements FileSavingObject {
     private String name;
     private int age;

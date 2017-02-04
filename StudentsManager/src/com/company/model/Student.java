@@ -1,10 +1,5 @@
 package com.company.model;
-
 import java.util.Comparator;
-
-/**
- * Created by itbrainiacs1 on 12/23/16.
- */
 public class Student implements FileSavingObject { //Use own superclass
     private String firstName;
     private String lastName;

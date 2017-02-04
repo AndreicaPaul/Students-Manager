@@ -1,5 +1,6 @@
 package com.company.view;
 import com.company.controller.Controller;
+import com.company.controller.Validator;
 import com.company.model.*;
 import java.util.Scanner;
 public class Menu
@@ -28,23 +29,12 @@ public class Menu
         return name;
     }
 
-    private boolean throwException(String name){
-        try {
-            if (name.matches(".*\\d+.*")) {
-                throw new StringContainsNumbersException();
-            }
-        } catch (StringContainsNumbersException e){
-            return true;
-            }
-        return false;
-    }
-
     private void showStudentSubMenus(){
         System.out.println("    1. Add Student");
         System.out.println("    2. View all Students");
         System.out.println("    3. Remove Student");
         System.out.println("    4. Return to main menu");
-        String userInput = "";
+        String userInput;
         userInput = scanner.nextLine();
         switch (userInput){
             case "0":
@@ -104,7 +94,7 @@ public class Menu
         System.out.println("    2. View all Disciplines");
         System.out.println("    3. Remove Discipline");
         System.out.println("    4. Return to main menu");
-        String userInput = "";
+        String userInput;
         userInput = scanner.nextLine();
         switch (userInput){
             case "0" : {
@@ -113,12 +103,12 @@ public class Menu
             }
             case "1" : {
                 String disciplineName = getUserInput("Input discipline name: ");
-                if(throwException(disciplineName)){
-                    System.out.println("You have a number in the name! Name not saved.");
-                    break;
-                }
                 Discipline discipline = new Discipline(disciplineName);
-                this.controller.addDiscipline(discipline);
+                try {
+                    this.controller.addDiscipline(discipline);
+                } catch (StringContainsNumbersException e) {
+                    System.out.println(e.getMessage());
+                }
                 break;
             }
             case "2" : {
@@ -156,7 +146,7 @@ public class Menu
         System.out.println("    2. View all Grades");
         System.out.println("    3. Remove Grade");
         System.out.println("    4. Return to main menu");
-        String userInput = "";
+        String userInput;
         userInput = scanner.nextLine();
         switch (userInput){
             case "0" : {
@@ -172,22 +162,16 @@ public class Menu
                     System.out.println(student.toString());
                 }
                 int posStud = Integer.parseInt(getUserInput("Input student position: "));
-                System.out.println("Please input grade's value: ");
-                int gradeValue = 0;
                 try {
-                    gradeValue = Integer.parseInt(getUserInput("Input grade value: "));
+                    int gradeValue = Integer.parseInt(getUserInput("Input grade value: "));
+                    Grade grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));
+                    this.controller.giveGrade(grade);
                 } catch (NumberFormatException e) {
                     System.out.println("Please input a number! Nothing changed.");
                     break;
+                } catch (Exception e){
+                    System.out.println("An unexpected error occurred.");
                 }
-                Grade grade = null;
-                try {
-                    grade = new Grade(gradeValue, this.controller.getDisciplineFromPosition(posDisc), this.controller.getStudentFromPosition(posStud));
-                } catch (Exception e) {
-                    System.out.println("Big error here, please reenter data!");
-                    break;
-                }
-                this.controller.giveGrade(grade);
                 break;
             }
             case "2" : {
@@ -202,13 +186,10 @@ public class Menu
                 }
                 try {
                     this.controller.removeGradeFromPosition(Integer.parseInt(getUserInput("Input position: ")));
-                } catch (Exception e) {
-                    if(e instanceof IndexOutOfBoundsException) {
+                } catch (IndexOutOfBoundsException e) {
                         System.out.println("Index out of bounds, please recheck the number of grades!");
-                    }
-                    else {
-                        System.out.println("We didn't saw that coming! :)");
-                    }
+                } catch (Exception e){
+                    System.out.println("An unexpected error occurred.");
                 }
                 break;
             }
@@ -218,7 +199,6 @@ public class Menu
             }
             default : {
                 System.out.println("Please input a valid number!(a number between 1 and 4, to close the app please input 0)");
-                break;
             }
         }
     }
@@ -228,7 +208,7 @@ public class Menu
         System.out.println("    2. View Teachers");
         System.out.println("    3. Remove Teacher");
         System.out.println("    4. Return to main menu");
-        String userInput = "";
+        String userInput;
         userInput = scanner.nextLine();
         switch (userInput)
         {
@@ -238,22 +218,18 @@ public class Menu
             }
             case "1" : {
                 String name = getUserInput("Please Input Teacher Name: ");
-                if(throwException(name)){
-                    System.out.println("You have a number in your name! Nothing saved.");
-                    break;
-                }
-                System.out.println();
-                int age = 0;
                 try {
-                    age = Integer.parseInt(getUserInput("Please Input Teacher Age: "));
+                    int age = Integer.parseInt(getUserInput("Please Input Teacher Age: "));
+                    String disciplineName = getUserInput("Please Input Teacher Discipline: ");
+                    Discipline discipline = new Discipline(disciplineName);
+                    Validator.validateDiscipline(discipline);
+                    Teacher teacher = new Teacher(name,age,discipline);
+                    this.controller.addTeacher(teacher);
                 } catch (NumberFormatException e) {
-                    System.out.println("Please input a number! Nothing saved.");
-                    break;
+                    System.out.println(e.getMessage());
+                } catch (StringContainsNumbersException e){         //something is wrong here
+                    System.out.println(e.getMessage());             //it says that the 2 exceptions are identical!?
                 }
-                String disciplineName = getUserInput("Please Input Teacher Discipline: ");
-                Discipline discipline = new Discipline(disciplineName);
-                Teacher teacher = new Teacher(name,age,discipline);
-                this.controller.addTeacher(teacher);
                 break;
             }
             case "2" : {
@@ -267,13 +243,11 @@ public class Menu
                     System.out.println(teacher.toString());
                 }
                 try {
-                    this.controller.removeTeacher(Integer.parseInt(getUserInput("Input position")));
-                } catch (Exception e) {
-                    if(e instanceof IndexOutOfBoundsException)
+                    this.controller.removeTeacher(Integer.parseInt(getUserInput("Input position: ")));
+                } catch (IndexOutOfBoundsException e) {
                         System.out.println("Index out of bounds, please recheck the number of teachers!");              ///modificari!
-                    else {
-                        System.out.println("We didn't saw that coming! :)");
-                    }
+                } catch (Exception e){
+                    System.out.println("Unexpected error occurred.");
                 }
                 break;
             }
@@ -294,7 +268,7 @@ public class Menu
         System.out.println("2. Disciplines");
         System.out.println("3. Grades");
         System.out.println("4. Teachers");
-        String userInput = "";
+        String userInput;
         userInput = scanner.nextLine();
         switch (userInput)
         {

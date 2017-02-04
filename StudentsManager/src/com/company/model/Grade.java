@@ -1,8 +1,4 @@
 package com.company.model;
-
-/**
- * Created by itbrainiacs1 on 1/13/17.
- */
 public class Grade extends Object implements FileSavingObject {
     private int value;
     private Discipline discipline;
